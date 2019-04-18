@@ -1,8 +1,9 @@
-package GL.Cucumber;
+package GL.Cucumber.stepDefinitions;
 
 import static org.junit.Assert.assertEquals;
 
-
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -11,6 +12,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 
+import cucumber.api.DataTable;
 import cucumber.api.PendingException;
 import cucumber.api.java.After;
 import cucumber.api.java.en.Given;
@@ -83,6 +85,45 @@ public void User_click_login_button() throws Throwable {
 	driver.findElement(By.cssSelector("#send2")).click();  
 }
 
+
+@When("^User leszek enter valid email and password$")
+
+public void user_leszek_enter_valid_email_and_password(DataTable credentials) throws Throwable {
+    // Write code here that turns the phrase above into concrete actions
+    // For automatic transformation, change DataTable to one of
+	WebElement emailTB = driver.findElement(By.cssSelector("#email"));
+	WebElement passTB = driver.findElement(By.cssSelector("#pass"));
+	//List<String> data = credentials.asList(String.class);
+	
+	
+	//emailTB.sendKeys(data.get("email"));
+	//passTB.sendKeys(data.get("password"));// podziałać z tymi listami i mapami
+	for(Map<String, String> data : credentials.asMaps(String.class, String.class)) {	
+		//System.out.println(data.get("email"));
+		emailTB.sendKeys(data.get("email"));
+		passTB.sendKeys(data.get("password"));
+		
+	}
+	Thread.sleep(2000);
+
+    // List<YourType>, List<List<E>>, List<Map<K,V>> or Map<K,V>.
+    // E,K,V must be a scalar (String, Integer, Date, enum etc)
+   // throw new PendingException();
+}
+
+
+
+@When("^User enter \"([^\"]*)\" and \"([^\"]*)\"$")
+public void user_enter_and(String email, String password) throws Throwable {
+    // Write code here that turns the phrase above into concrete actions
+	WebElement emailTB = driver.findElement(By.cssSelector("#email"));
+	WebElement passTB = driver.findElement(By.cssSelector("#pass"));
+	emailTB.sendKeys(email);
+	passTB.sendKeys(password);
+	//throw new PendingException();
+}
+
+
 // --------- Then ----------
 
 
@@ -107,13 +148,14 @@ public void my_panel_page_is_opened_at_adress(String adress) throws Throwable {
 	//"https://www.bikestar.pl/customer/account/"
 }
 //Welcome user_name user_surname is displayed
-@Then("^Welcome message (.*) is displayed$")
+@Then("^Welcome message \\\"([^\\\"]*)\\\" is displayed$")
 public void Welcome_message_is_displayed(String message) throws Throwable {
+	System.out.println(message);
 	System.out.println((driver.findElement(By.cssSelector(".hello > strong:nth-child(1)")).getText()));
    assertEquals((driver.findElement(By.cssSelector(".hello > strong:nth-child(1)")).getText()),message);
 }
 
-@Then("^Warning message =(.*) is displayed$")
+@Then("^Warning message \\\"([^\\\"]*)\\\" is displayed$")
 public void Warning_message_is_displayed(String warning) throws Throwable {
 	System.out.println(driver.findElement(By.cssSelector(".error-msg > ul:nth-child(1) > li:nth-child(1) > span:nth-child(1)")).getText());
     System.out.println(warning);
