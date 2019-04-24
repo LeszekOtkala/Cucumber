@@ -5,7 +5,8 @@ Scenario: User signin with correct data
 
 	Given User opens Bikestar page
 	When User click login link
-	And User leszek enter valid email and password
+	Then login page is displayed
+	And User enter valid email and password
 	|email			     |password|
 	|leszek1502@gmail.com|alskdjfh|
 	And User click login button
@@ -18,6 +19,7 @@ Scenario Outline: User signin with incorrect data
 
 	Given User opens Bikestar page
 	When User click login link
+	Then login page is displayed
 	And User enter "<email>" and "<password>"
 	And User click login button
 	Then Warning message "Nieprawidłowa nazwa użytkownika lub hasło." is displayed

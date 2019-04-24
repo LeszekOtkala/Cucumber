@@ -4,11 +4,11 @@ import org.junit.runner.RunWith;
 
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
-import GL.Cucumber.stepDefinitions.*; 
+
 @RunWith(Cucumber.class)
 @CucumberOptions(
-		features="Feature",
-		glue = {""},			// tu szuka step definitions;
+		features="classpath:GL/Cucumber/features/BikestarLogIn.feature",
+		glue = {"GL/Cucumber/stepDefinitions"},			// tu szuka step definitions;
 		strict=true,
 		dryRun=false,
 		tags= {"@Positive, @Negative"}//or
@@ -17,6 +17,6 @@ import GL.Cucumber.stepDefinitions.*;
 		//tags= {"~@Positive", "@Negative"}//and
 		)
 
-public class TestRunner {
+public class LogInTestRunner {
 
 }
