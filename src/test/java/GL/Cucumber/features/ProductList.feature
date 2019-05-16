@@ -11,4 +11,7 @@ Then sub menu is displayed
 
 When user clicks on integral helmets menu item
 Then product list of integral helmets is displayed
-And breadcrumbs trail is displayed
+And breadcrumbs trail is displayed on product list page
+
+
+

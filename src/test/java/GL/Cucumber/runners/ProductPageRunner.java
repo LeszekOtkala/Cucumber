@@ -10,8 +10,8 @@ import cucumber.api.junit.Cucumber;
 		features="classpath:GL/Cucumber/features/ProductPage.feature",
 		glue = {"GL/Cucumber/stepDefinitions"},			// tu szuka step definitions;
 		strict=true,
-		dryRun=false,
-		tags= {"@Positive, @Negative"}//or
+		dryRun=false
+		//,tags= {"@Positive, @Negative"}//or
 		//, tags= {"@Positive", "@Negative"}//and
 		//tags= {"@Positive,@Negative"} //or
 		//tags= {"~@Positive", "@Negative"}//and

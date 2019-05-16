@@ -45,8 +45,7 @@ public class MainPage extends BasePage {
 	@FindBy (xpath="//li[@class='level1 nav-10-1 first title']//a[contains(text(),'Kaski Integralne')]")
 	WebElement integralHelmetsMenuItem;
 	
-	@FindBy(xpath="//div[@class='breadcrumbs']")
-	WebElement breadcrumbsTrail;
+	
 	
 	public MainPage() {
 		PageFactory.initElements(driver, this);
@@ -109,9 +108,6 @@ public class MainPage extends BasePage {
 	}
 	
 	
-	public boolean breadcrumbsTrailIsDisplayed() {
-		return breadcrumbsTrail.isDisplayed();
-	}
 	
 	
 	public void goToLoginPage() {		
