@@ -8,7 +8,7 @@ Scenario: User signin with correct data
 	Then login page is displayed
 	And User enter valid email and password
 	|email			     |password|
-	|leszek1502@gmail.com|alskdjfh|
+	|leszek1502@gmail.com|laksjdhf|
 	And User click login button
 	Then my panel page is opened at adress https://www.bikestar.pl/customer/account/
 	And Welcome message "Witaj, Leszek Otkała!" is displayed

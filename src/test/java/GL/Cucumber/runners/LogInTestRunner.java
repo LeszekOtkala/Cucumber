@@ -11,10 +11,11 @@ import cucumber.api.junit.Cucumber;
 		glue = {"GL/Cucumber/stepDefinitions"},			// tu szuka step definitions;
 		strict=true,
 		dryRun=false,
-		tags= {"@Positive, @Negative"}//or
+		//tags= {"@Positive, @Negative"}//or
 		//, tags= {"@Positive", "@Negative"}//and
 		//tags= {"@Positive,@Negative"} //or
 		//tags= {"~@Positive", "@Negative"}//and
+		tags= {"@Positive"}
 		)
 
 public class LogInTestRunner {

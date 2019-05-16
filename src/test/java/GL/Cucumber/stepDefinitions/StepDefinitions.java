@@ -1,7 +1,7 @@
 package GL.Cucumber.stepDefinitions;
 
 import static org.junit.Assert.assertEquals;
-
+import static org.junit.Assert.assertTrue;
 
 import java.util.Map;
 import cucumber.api.DataTable;
@@ -116,6 +116,83 @@ public void Warning_message_is_displayed(String warning) throws Throwable {
     System.out.println(logInPage.getWarningMessage());
    assertEquals(logInPage.getWarningMessage(),warning);
 }
+//PAGE STRUCTURE
+@Then("^Main Page is opened and ddl menu top of the page is visible$")
+public void main_Page_is_opened_and_ddl_menu_top_of_the_page_is_visible() throws Throwable {
+    // Write code here that turns the phrase above into concrete actions
+	assertEquals("Sklep Motocyklowy - Akcesoria i Części Motocyklowe - Bikestar.pl", mainPage.getTitle());
+	assertTrue(mainPage.mainMenuHelmetsIsDisplayed());
+	assertTrue(mainPage.mainMenuClothesIsDisplayed());
+	assertTrue(mainPage.mainMenuGlovesIsDisplayed());
+	//itd...
+	
+	//i tak przez wszystkie elementy, mozna tez jeszcze sprawdzac elementy podmenu          
+    //throw new PendingException();
+}
+
+@Then("^table menu bottom of the page is visible$")
+public void table_menu_bottom_of_the_page_is_visible() throws Throwable {
+    // Write code here that turns the phrase above into concrete actions
+   assertTrue(mainPage.tableMenuIsDisplayed());
+}
+
+@Then("^highlighted products are visible bottom of the page$")
+public void highlighted_products_are_visible_bottom_of_the_page() throws Throwable {
+    // Write code here that turns the phrase above into concrete actions
+    assertTrue(mainPage.highlightedProductsIsDisplayed());
+}
+
+@When("^user moves mouse over Helmets in menu$")
+public void user_moves_mouse_over_Helmets_in_menu() throws Throwable {
+	mainPage.mouseOverMainMenuHelmets();
+	Thread.sleep(2000);
+	/*
+	mainPage.mouseOverMainMenuClothes();
+	Thread.sleep(2000);
+	mainPage.mouseOverMainMenuGloves();
+	Thread.sleep(2000);
+	*/
+}
+
+@Then("^sub menu is displayed$")
+public void sub_menu_is_displayed() throws Throwable {
+    // Write code here that turns the phrase above into concrete actions
+    mainPage.IntegralHelmetMenuItemIsDisplayed();
+}
+
+@When("^user clicks on integral helmets menu item$")
+public void user_clicks_on_integral_helmets_menu_item() throws Throwable {
+    // Write code here that turns the phrase above into concrete actions
+    mainPage.clickIntegralHelmetsMenuItem();
+}
+
+@Then("^product list of integral helmets is displayed$")
+public void product_list_of_integral_helmets_is_displayed() throws Throwable {
+    // Write code here that turns the phrase above into concrete actions
+	//TO DO : zrobic logike listy produktow
+    throw new PendingException();
+}
+
+@When("^user clicks first highlighted product$")
+public void user_clicks_first_highlighted_product() throws Throwable {
+    // Write code here that turns the phrase above into concrete actions
+    throw new PendingException();
+}
+
+@Then("^selected product page is displayed$")
+public void selected_product_page_is_displayed() throws Throwable {
+    // Write code here that turns the phrase above into concrete actions
+    throw new PendingException();
+}
+@Then("^breadcrumbs trail is displayed$")
+public void breadcrumbs_trail_is_displayed() throws Throwable {
+    // Write code here that turns the phrase above into concrete actions
+	assertTrue(mainPage.breadcrumbsTrailIsDisplayed());
+	//TO DO - sprawdzenie czy nawigacja wyswietla sie we wlasciwej formie 
+	//"Strona główna / Typu produktu / Kategoria produktu (/ Podkategoria produktu)".
+}
+
+// END OF PAGE STRUCTURE
 
 @After
 
