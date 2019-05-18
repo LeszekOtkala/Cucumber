@@ -32,22 +32,7 @@ public class BasePage {
 			driver.get(Utils.url);
 		}
 	}
-	@FindBy(css="div.fadelink:nth-child(2)")
-	WebElement accountDDL;
-		
-	@FindBy(css="div.fadelink:nth-child(2) > div:nth-child(2) > ul:nth-child(1) > li:nth-child(1) > a:nth-child(1)")
-	WebElement myAccountLink;
-
 	
-	public void mouseOverAccountDDL() {
-		Actions builder=new Actions(driver);
-		Actions actionMouseOverAccountDDL=builder.moveToElement(accountDDL);
-		actionMouseOverAccountDDL.perform();
-	}	
-	
-	public void goToMyAccount() {
-		myAccountLink.click();
-	}
 	public static void closeWindow(){
 		driver.close();
 		driver = null;

@@ -1,6 +1,6 @@
 Feature: PageStructure;
 
-@RunNow
+
 @Positive
 Scenario: Checking if menu is visible in all required places
 When User opens Bikestar page
@@ -10,7 +10,7 @@ And highlighted products are visible bottom of the page
 
 
 
-
+@RunNow
 @Positive
 Scenario: Open product list by clicking top menu 
 
