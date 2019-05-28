@@ -10,8 +10,9 @@ package GL.Cucumber.runners;
 			features="classpath:GL/Cucumber/features/MyPanelAddressBookEdit.feature",
 			glue = {"GL/Cucumber/stepDefinitions"},			// tu szuka step definitions;
 			strict=true,
-			dryRun=false,
-			tags= {"@Positive"}//or
+			dryRun=false
+			//,tags= {"@RunNow"}
+			//,tags= {"@Positive"}//or
 			//, tags= {"@Positive", "@Negative"}//and
 			//tags= {"@Positive,@Negative"} //or
 			//tags= {"~@Positive", "@Negative"}//and

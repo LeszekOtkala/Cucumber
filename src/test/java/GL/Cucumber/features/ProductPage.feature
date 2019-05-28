@@ -3,7 +3,7 @@ Feature: ProductPage
 @Positive
 Scenario: Open product page and check if breadcrumbs trail is displayed
 
-Given User opens Bikestar page
+Given Bikestar main page has opened
 
 When user moves mouse over Helmets in menu
 Then sub menu is displayed

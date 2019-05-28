@@ -7,6 +7,7 @@ import java.util.Map;
 import cucumber.api.DataTable;
 import cucumber.api.PendingException;
 import cucumber.api.java.After;
+import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -14,6 +15,8 @@ import pages.IntegralHelmetsProductList;
 import pages.LogInPage;
 import pages.MainPage;
 import pages.MyPanelPage;
+import pages.ProductPage;
+import pages.ExampleProductPage;
 import pages.IntegralHelmetProductPage;
 import util.BasePage;
 import util.Utils;
@@ -24,17 +27,28 @@ public class StepDefinitions {
 	MyPanelPage myPanelPage;
 	IntegralHelmetsProductList integralHelmetsProductList;
 	IntegralHelmetProductPage integralHelmetProductPage;
+	ExampleProductPage productPage;
 //  ------ Given ------
-	
-@Given("^User opens Bikestar page$")
+
+/*
+ Gdyby @Before miało dotyczyć wybranego (-ych) scenariusza to tagujemy ("@TagName") albo:
+ 
+ @BeforeStep
+public void doSomethingBeforeStep(Scenario scenario){
+ 
+ 	
+ */
+@Before			
 public void user_opens_Bikestar_page() throws Throwable {
 	BasePage.initialize();
 	mainPage = new MainPage();	
 
 }
 
-
-
+@Given("^Bikestar main page has opened$")
+public void bikestar_main_page_has_opened() throws Throwable {
+	assertEquals("Sklep Motocyklowy - Akcesoria i Części Motocyklowe - Bikestar.pl", mainPage.getTitle());  
+}
 // ------- When -------
 
 @When("^User click login link$")
@@ -61,9 +75,6 @@ public void user_enter_valid_email_and_password(DataTable credentials) throws Th
 	}
 	Thread.sleep(2000);
 
-    // List<YourType>, List<List<E>>, List<Map<K,V>> or Map<K,V>.
-    // E,K,V must be a scalar (String, Integer, Date, enum etc)
-   // throw new PendingException();
 }
 
 @When("^User enter \"([^\"]*)\" and \"([^\"]*)\"$")
@@ -82,18 +93,16 @@ public void login_page_is_displayed() throws Throwable {
 	logInPage = new LogInPage();
 }
 
-@Then("^product is added to cart$")
-public void product_is_added_to_cart() throws Throwable {
+@When("^User logs in using valid credentials$")
+public void user_logs_in_using_valid_credentials() throws Throwable {
     
-   throw new PendingException();
+	logInPage.typeEmail("leszek1502@gmail.com");
+	logInPage.typePassword("haslo");
+	logInPage.clickLoginButton();
 }
 
 
 
-@Then("^Article is displayed$")
-public void article_is_displayed() throws Throwable {
-	throw new PendingException();
-}
 
 @Then("^my panel page is opened at adress (.*)$")
 public void my_panel_page_is_opened_at_adress(String adress) throws Throwable {
@@ -119,19 +128,32 @@ public void Warning_message_is_displayed(String warning) throws Throwable {
     System.out.println(logInPage.getWarningMessage());
    assertEquals(logInPage.getWarningMessage(),warning);
 }
+
 //PAGE STRUCTURE
-@Then("^Main Page is opened and ddl menu top of the page is visible$")
-public void main_Page_is_opened_and_ddl_menu_top_of_the_page_is_visible() throws Throwable {
+@When("^User checks if Ddl menu top of the page is visible$")
+public void user_checks_if_Ddl_menu_top_of_the_page_is_visible() throws Throwable {
+    mainPage.mouseOverMainMenuHelmets();
+    mainPage.mouseOverMainMenuClothes();
+    mainPage.mouseOverMainMenuGloves();
+    //itd...
+    mainPage.mouseOverMainMenuBlog();
+}
+@Then("^Ddl menu top of the page is visible$")
+public void Ddl_menu_top_of_the_page_is_visible() throws Throwable {
     
-	assertEquals("Sklep Motocyklowy - Akcesoria i Części Motocyklowe - Bikestar.pl", mainPage.getTitle());
+	//
 	assertTrue(mainPage.mainMenuHelmetsIsDisplayed());
 	assertTrue(mainPage.mainMenuClothesIsDisplayed());
 	assertTrue(mainPage.mainMenuGlovesIsDisplayed());
 	//itd...
-	
 	//i tak przez wszystkie elementy, mozna tez jeszcze sprawdzac elementy podmenu          
-    //throw new PendingException();
+    assertTrue(mainPage.mainMenuBlogIsDisplayed());
 }
+@When("^User checks if table menu bottom of the page is visible$")
+public void user_checks_if_table_menu_bottom_of_the_page_is_visible() throws Throwable {
+    mainPage.mouseOverTableMenu();
+}
+
 
 @Then("^table menu bottom of the page is visible$")
 public void table_menu_bottom_of_the_page_is_visible() throws Throwable {
@@ -139,6 +161,10 @@ public void table_menu_bottom_of_the_page_is_visible() throws Throwable {
    assertTrue(mainPage.tableMenuIsDisplayed());
 }
 
+@When("^User checks if highlighted products are visible$")
+public void user_checks_if_highlighted_products_are_visible() throws Throwable {
+    mainPage.mouseOverHighlightedProducts();
+}
 @Then("^highlighted products are visible bottom of the page$")
 public void highlighted_products_are_visible_bottom_of_the_page() throws Throwable {
     
@@ -149,12 +175,7 @@ public void highlighted_products_are_visible_bottom_of_the_page() throws Throwab
 public void user_moves_mouse_over_Helmets_in_menu() throws Throwable {
 	mainPage.mouseOverMainMenuHelmets();
 	Thread.sleep(2000);
-	/*
-	mainPage.mouseOverMainMenuClothes();
-	Thread.sleep(2000);
-	mainPage.mouseOverMainMenuGloves();
-	Thread.sleep(2000);
-	*/
+
 }
 
 @Then("^sub menu is displayed$")
@@ -174,19 +195,24 @@ public void product_list_of_integral_helmets_is_displayed() throws Throwable {
 	assertEquals(integralHelmetsProductList.getTitle(),"Kaski Integralne zmknięte - Bikestar.pl");
     
 	//TO DO : zrobic logike listy produktow
-   // throw new PendingException();
+   
 }
 
 @When("^user clicks first highlighted product$")
 public void user_clicks_first_highlighted_product() throws Throwable {
     
-    throw new PendingException();
+    mainPage.clickOnFirstHighlightedProduct();
+    productPage= new ExampleProductPage();
+	
 }
 
 @Then("^selected product page is displayed$")
 public void selected_product_page_is_displayed() throws Throwable {
     
-    throw new PendingException();
+	assertTrue(productPage.addToCartButtonIsVisible());
+	//TODO
+	//poszukać elementów wspólnych, dzięki którym można potwierdzić otwarcie strony, lub wyciągnąć adres linku i sprawdzić czy przechodzi pod ten adres
+   
 }
 @Then("^breadcrumbs trail is displayed on product list page$")
 public void breadcrumbs_trail_is_displayed_on_product_list_page() throws Throwable {
@@ -201,15 +227,16 @@ public void breadcrumbs_trail_is_displayed_on_product_list_page() throws Throwab
 public void user_clicks_on_first_product() throws Throwable {
 	
 	integralHelmetsProductList.clickOnFirstIntegralHelmetLink();
+	
    
 }
 
 @Then("^product page is displayed$")
 public void product_page_is_displayed() throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
+    
 	integralHelmetProductPage=new IntegralHelmetProductPage();
 	assertEquals("Kask",integralHelmetProductPage.getTitle().substring(0, 4));
-    //throw new PendingException();
+    
 }
 @Then("^breadcrumbs trail is displayed on product page$")
 public void breadcrumbs_trail_is_displayed_on_product_page() throws Throwable {

@@ -1,20 +1,22 @@
 Feature: PageStructure;
 
-
+@RunNow
 @Positive
 Scenario: Checking if menu is visible in all required places
-When User opens Bikestar page
-Then Main Page is opened and ddl menu top of the page is visible
-And table menu bottom of the page is visible
-And highlighted products are visible bottom of the page
+Given Bikestar main page has opened
+When User checks if Ddl menu top of the page is visible
+Then Ddl menu top of the page is visible
+When User checks if table menu bottom of the page is visible
+Then table menu bottom of the page is visible
+When User checks if highlighted products are visible
+Then highlighted products are visible bottom of the page
 
 
 
-@RunNow
 @Positive
 Scenario: Open product list by clicking top menu 
 
-Given User opens Bikestar page
+Given Bikestar main page has opened
 
 When user moves mouse over Helmets in menu
 Then sub menu is displayed
@@ -26,8 +28,6 @@ Then product list of integral helmets is displayed
 @Positive
 Scenario: Open product site clicking link in highlighted products field
 
-Given User opens Bikestar page
-
-
+Given Bikestar main page has opened
 When user clicks first highlighted product
 Then selected product page is displayed

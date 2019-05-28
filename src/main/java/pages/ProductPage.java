@@ -8,7 +8,15 @@ public abstract class ProductPage extends MainPage {
 	@FindBy(xpath="//div[@class='breadcrumbs']")
 	WebElement breadcrumbsTrail;
 	
+	@FindBy(xpath="//button[@class='button btn-cart']")
+	WebElement addToCartButton;
+	
+		
 	public boolean breadcrumbsTrailIsDisplayed() {
 		return breadcrumbsTrail.isDisplayed();
+	}
+	
+	public boolean addToCartButtonIsVisible(){
+		return addToCartButton.isDisplayed();
 	}
 }

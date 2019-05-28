@@ -12,6 +12,10 @@ public class AddressBookPage extends MyPanelPage{
 	@FindBy(css=".col-1 > ol:nth-child(2) > li:nth-child(1) > p:nth-child(3) > a:nth-child(1)")
 	WebElement editPrimaryBillingAddress;
 	
+	@FindBy(xpath="//div[@class='col-1 addresses-primary']//li[1]")
+	WebElement primaryAdresField;
+	@FindBy(xpath="//span[contains(text(),'Adres został zapisany.')]")
+	WebElement msgSaveConfirmation;
 	
 	public AddressBookPage() {
 		PageFactory.initElements(driver, this);
@@ -24,6 +28,13 @@ public class AddressBookPage extends MyPanelPage{
 	
 	public void clickOnEditPrimaryBillingAddress() {
 		addNewAddressLink.click();
+	}
+	
+	public String getTextFromPrimaryAdresField() {
+		return primaryAdresField.getText();
+	}
+	public boolean msgSaveConfirmationisVisible() {
+		return msgSaveConfirmation.isDisplayed();
 	}
 }
 

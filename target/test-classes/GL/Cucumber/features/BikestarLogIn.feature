@@ -3,10 +3,10 @@ Feature: BikeStarLogIn
 @Positive
 Scenario: User signin with correct data
 
-	Given User opens Bikestar page
+	Given Bikestar main page has opened
 	When User click login link
 	Then login page is displayed
-	And User enter valid email and password
+	When User enter valid email and password
 	|email			     |password|
 	|leszek1502@gmail.com|laksjdhf|
 	And User click login button
@@ -17,10 +17,10 @@ Scenario: User signin with correct data
 @Negative
 Scenario Outline: User signin with incorrect data
 
-	Given User opens Bikestar page
+	Given Bikestar main page has opened
 	When User click login link
 	Then login page is displayed
-	And User enter "<email>" and "<password>"
+	When User enter "<email>" and "<password>"
 	And User click login button
 	Then Warning message "Nieprawidłowa nazwa użytkownika lub hasło." is displayed
 	

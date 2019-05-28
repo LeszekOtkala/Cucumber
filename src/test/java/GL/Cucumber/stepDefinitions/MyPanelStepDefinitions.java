@@ -1,25 +1,18 @@
 package GL.Cucumber.stepDefinitions;
 
 import static org.junit.Assert.assertEquals;
-
+import static org.junit.Assert.assertTrue;
 
 import java.util.Map;
 import cucumber.api.DataTable;
-import cucumber.api.PendingException;
-import cucumber.api.java.After;
-import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import cucumber.runtime.StepDefinition;
 import junit.framework.Assert;
 import pages.AccountDataEditPage;
 import pages.AddNewAddressPage;
 import pages.AddressBookPage;
-import pages.LogInPage;
 import pages.MainPage;
 import pages.MyPanelPage;
-import util.BasePage;
-import util.Utils;
 
 public class MyPanelStepDefinitions {
 
@@ -32,108 +25,78 @@ public class MyPanelStepDefinitions {
 	
 	@When("^User move mouse over Account DDL$")
 	public void user_move_mouse_over_Account_DDL() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
+	    
 		mainPage=new MainPage();
 		mainPage.mouseOverAccountDDL();
 		Thread.sleep(2000);
-	   // throw new PendingException();
+	   
 	}
 	
 	@When("^User click on My Account$")
 	public void user_click_on_My_Account() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
+	    
 		mainPage.goToMyAccount();
 		Thread.sleep(2000);
-	    //throw new PendingException();
+	    
 	}
 	@Then("^my panel page is opened$")
 	public void my_panel_page_is_opened() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
+	    
 		myPanelPage=new MyPanelPage();
 		
-	    //throw new PendingException();
+	    
 	}
 
 	@When("^user click account edit link$")
 	public void user_click_account_edit_link() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
+	   
 		myPanelPage.goToAccountEdit();
-	    //throw new PendingException();
+	   
 	}
 	
 	@Then("^account data edit page is opened$")
 	public void account_data_edit_page_is_opened() throws Throwable {
 	    accountDataEditPage=new AccountDataEditPage();
-	    //throw new PendingException();
+	    
 	}
 
-	@When("^user click on textbox Name$")
-	public void user_click_on_textbox_Name() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-		accountDataEditPage.clickOnFirstNameTextbox();
-	    //throw new PendingException();
-	}
-
-	@When("^user clear textbox Name$")
-	public void user_clear_textbox_Name() throws Throwable {
-	    accountDataEditPage.clearFirstNameTextbox();
-	    //throw new PendingException();
-	}
 
 	@When("^user type name \"([^\"]*)\" to textbox name$")
 	public void user_type_name_to_textbox_name(String name) throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
+		accountDataEditPage.clickOnFirstNameTextbox();
+		accountDataEditPage.clearFirstNameTextbox();
 		accountDataEditPage.enterFirstName(name);
 		
-		//throw new PendingException();
+		
 	}
-
-	@When("^user click on textbox surname$")
-	public void user_click_on_textbox_surname() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-	    accountDataEditPage.clickOnSurNameTextbox();
-	}
-
-	@When("^user clear textbox surname$")
-	public void user_clear_textbox_surname() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-	    accountDataEditPage.clearSurNameTextbox();
-	}
+	
 
 	@When("^user type name \"([^\"]*)\" to textbox surname$")
 	public void user_type_name_to_textbox_surname(String surName) throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
+	    
+		accountDataEditPage.clickOnSurNameTextbox();
+		accountDataEditPage.clearSurNameTextbox();
 	    accountDataEditPage.enterSurName(surName);
 	}
 
 	
-	@When("^user click on textbox email$")
-	public void user_click_on_textbox_email() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-	    accountDataEditPage.clickOnEmailTextbox();
-	}
-
-	@When("^user clear textbox email$")
-	public void user_clear_textbox_email() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-	    accountDataEditPage.clearEmailTextbox();
-	}
 
 	@When("^user type name \"([^\"]*)\" to textbox email$")
 	public void user_type_name_to_textbox_email(String email) throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
+		accountDataEditPage.clickOnEmailTextbox();
+		accountDataEditPage.clearEmailTextbox();
 		accountDataEditPage.enterEmail(email);
 	}
 
 	@When("^user click Save button$")
 	public void user_click_Save_button() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
+	    
 		accountDataEditPage.clickSaveButton();
 	Thread.sleep(2000);    
 	}
 	@When("^user click on current password textfield$")
 	public void user_click_on_current_password_textfield() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
+	    
 	    accountDataEditPage.clickOnCurrentPasswordTextBox();
 	}
 
@@ -142,23 +105,16 @@ public class MyPanelStepDefinitions {
 	    // Write code here that turns the phrase above into concrete actions
 		accountDataEditPage.enterCurrentPasswordTextBox(pass);
 	}
-
-	@When("^user click on confirm current password textbox$")
-	public void user_click_on_confirm_current_password_textbox() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-	    accountDataEditPage.clickOnConfirmCurrentPasswordTextBox();
-	}
-
-	@When("^user eter password: \"([^\"]*)\" to confrm password textbox$")
+	
+	@When("^user enter password: \"([^\"]*)\" to confrm password textbox$")
 	public void user_eter_password_to_confrm_password_textbox(String pass) throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
+		accountDataEditPage.clickOnConfirmCurrentPasswordTextBox();
 	    accountDataEditPage.enterConfirmCurrentPasswordTextBox(pass);
 	}
 
 	@Then("^\"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\" is visible in user data fields$")
 	public void is_visible_in_user_data_fields(String name, String surname, String email) throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-	    //throw new PendingException();
+	   
 		Thread.sleep(5000);
 		System.out.println(myPanelPage.getUserData());
 		Assert.assertEquals(name+" "+surname+"\n"+email+"\n"+"Zmień hasło",myPanelPage.getUserData() );
@@ -172,17 +128,15 @@ public class MyPanelStepDefinitions {
 	
 	@When("^user clicks edit primary billing address$")
 	public void user_clicks_edit_primary_billing_address() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
+	    
 		addressBookPage.clickOnEditPrimaryBillingAddress();
-		
-	    //throw new PendingException();
+
 	}
 	
 
 	@Then("^addres book is opened or add new address page is opened$")
 	
 	public void addres_book_is_opened_or_add_new_address_page_is_opened() throws Throwable {
-		//System.out.println(myPanelPage.getPageTitle());
 		Assert.assertTrue(myPanelPage.getPageTitle().equals("Książka adresowa - Bikestar.pl")||myPanelPage.getPageTitle().equals("Dodaj nowy adres - Bikestar.pl"));
 	   
 	    
@@ -193,24 +147,23 @@ public class MyPanelStepDefinitions {
 		//addressBookPage.clickOnAddNewAdressLink(); //dla pierwszego otwarcia
 		if(myPanelPage.getPageTitle().equals("Dodaj nowy adres - Bikestar.pl"));
 		addNewAddressPage=new AddNewAddressPage();
-	    // Write code here that turns the phrase above into concrete actions
-	    //throw new PendingException();
+	    
 	}
 	@Then("^addres book page is opened$")
 	public void addres_book_page_is_opened() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
+	   
 		addressBookPage= new AddressBookPage();
-		//Assert.assertEquals("Książka adresowa - Bikestar.pl", addressBookPage.getPageTitle());
+		Assert.assertEquals("Książka adresowa - Bikestar.pl", addressBookPage.getPageTitle());
 	}
 
-	@Then("^user clicks on add_new_addres button$")
+	@When("^user clicks on add_new_addres button$")
 	public void user_clicks_on_add_new_addres_button() throws Throwable {
 	    // Write code here that turns the phrase above into concrete actions
 		addressBookPage.clickOnAddNewAdressLink();
 	}
 
 
-	@Then("^user creates adress first time typing data:$")
+	@When("^user creates adress first time typing data:$")
 	public void user_creates_adress_first_time_typing_data(DataTable addressData) throws Throwable {
 		for(Map<String, String> data : addressData.asMaps(String.class, String.class)) {
 		
@@ -261,18 +214,17 @@ public class MyPanelStepDefinitions {
 		
 	}
 
-	@Then("^user click save adress button$")
+	@When("^user click save adress button$")
 	public void user_click_save_adress_button() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
+	    
 	    addNewAddressPage.clickSaveButon();
 	}
 
 	@Then("^adress is visible as primary for billing and shipping$")
 	public void adress_is_visible_as_primary_for_billing_and_shipping() throws Throwable {
-	    // Write code here that turns the phrase above into concrete action
-		//napisać sprawdzenie
-		System.out.println("napisać sprawdzenie!!!");
-	    Thread.sleep(5000);
+	    
+		assertEquals("PODSTAWOWY ADRES ROZLICZENIOWY\nLeszek Otkała\nUl. Testowa 1/1\nSzczecinek, 78-400\nPolska\nT: 604264357\nZmień adres rozliczeniowy", addressBookPage.getTextFromPrimaryAdresField());
+	    
 	}
 	@Then("^adress edit page is opened$")
 	public void adress_edit_page_is_opened() throws Throwable {
@@ -280,8 +232,8 @@ public class MyPanelStepDefinitions {
 	    editAddressPage= new AddNewAddressPage();
 	}
 
-	@When("^user edit some personal data$")
-	public void user_edit_some_personal_data(DataTable addressData) throws Throwable {
+	@When("^user edit personal data$")
+	public void user_edit_personal_data(DataTable addressData) throws Throwable {
 		for(Map<String, String> data : addressData.asMaps(String.class, String.class)) {
 			
 			//System.out.println("Nazwisko to: "+data.get("surname"));	
@@ -336,10 +288,12 @@ public class MyPanelStepDefinitions {
 		editAddressPage.clickSaveButon();
 	    //throw new PendingException();
 	}
-	@Then("^corected address is visible as primary billing address$")
-	public void corected_address_is_visible_as_primary_billing_address() throws Throwable {
+	@Then("^address has saved and is visible in address book$")
+	public void address_has_saved_and_is_visible_in_address_book() throws Throwable {
 	    // Write code here that turns the phrase above into concrete actions
-		System.out.println("napisać sprawdzenie!!!");
+		
+		assertTrue(addressBookPage.msgSaveConfirmationisVisible());
+		assertEquals("PODSTAWOWY ADRES ROZLICZENIOWY\nLeszek Otkała\nUl. Testowa 1/1\nSzczecinek, 78-400\nPolska\nT: 604264357\nZmień adres rozliczeniowy", addressBookPage.getTextFromPrimaryAdresField());
 	    //throw new PendingException();
 	}
 

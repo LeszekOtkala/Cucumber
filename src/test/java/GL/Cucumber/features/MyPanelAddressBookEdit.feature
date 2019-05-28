@@ -1,14 +1,11 @@
 Feature: MyPanelAddressBookEdit
-
+@RunNow
 @Positive
 Scenario: user add new adress
-Given User opens Bikestar page
+Given Bikestar main page has opened
 When User click login link
 Then login page is displayed
-And User enter valid email and password
-	|email			     |password|
-	|leszek1502@gmail.com|laksjdhf|
-And User click login button
+When User logs in using valid credentials
 Then my panel page is opened
 
 When user click adress book link
@@ -20,17 +17,14 @@ Then user creates adress first time typing data:
 	|name			     |surname	|company	|tel		|fax|street				|city	   |zip	|country|primaryBilling |primaryShipping|
 	|Leszek				 |Otkała	|			|604264357	|	|Ul. Testowa 1/1	|Szczecinek|78-400	|Polska	|Yes			|			 Yes|
 And user click save adress button
-Then adress is visible as primary for billing and shipping
+Then address has saved and is visible in address book
 
 @Positive
 Scenario: user edits primary billing and primary shipping address
-Given User opens Bikestar page
+Given Bikestar main page has opened
 When User click login link
 Then login page is displayed
-And User enter valid email and password
-	|email			     |password|
-	|leszek1502@gmail.com|laksjdhf|
-And User click login button
+When User logs in using valid credentials
 Then my panel page is opened
 
 When user click adress book link
@@ -39,8 +33,8 @@ Then addres book page is opened
 When user clicks edit primary billing address
 Then adress edit page is opened
 
-When user edit some personal data
+When user edit personal data
 |name			     |surname	|company	|tel		|fax|street				|city	   |zip		|country|primaryBilling |primaryShipping|
 |Leszek				 |Otkała	|			|604264357	|	|Ul. Testowa 1/1	|Szczecinek|78-400	|Polska	|Yes			|			 Yes|
 And user click save adress button on edit address page
-Then corected address is visible as primary billing address
+Then address has saved and is visible in address book

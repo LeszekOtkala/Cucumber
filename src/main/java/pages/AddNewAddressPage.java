@@ -149,7 +149,7 @@ public class AddNewAddressPage extends MyPanelPage {
 				primaryBillingCB.click();
 		}
 		public void selectCountry(String country) {
-			System.out.println(country);
+			//System.out.println(country);
 			//podziałać z tym
 			//countryDDL.selectByValue("PL");
 		}

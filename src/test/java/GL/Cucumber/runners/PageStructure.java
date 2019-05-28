@@ -11,7 +11,7 @@ import cucumber.api.junit.Cucumber;
 		glue = {"GL/Cucumber/stepDefinitions"},			// tu szuka step definitions;
 		strict=true,
 		dryRun=false
-		,tags= {"@RunNow"}
+		//,tags= {"@RunNow"}
 		//,tags= {"@Positive"}//or
 		//, tags= {"@Positive", "@Negative"}//and
 		//tags= {"@Positive,@Negative"} //or

@@ -35,7 +35,9 @@ public class MainPage extends BasePage {
 	@FindBy (xpath="//li[@class='level0 nav-12 parent']//span[contains(text(),'Rękawice')]")
 	WebElement mainMenuGloves;
 	//jeszcze trochę tych elementów menu można wypisać
-	
+	@FindBy (xpath="//ul[@id='nav']//a[contains(text(),'Blog')]")
+	WebElement mainMenuBlog;
+		
 	@FindBy (xpath="//ul[contains(@class,'easycatalog-grid easycatalogimg-cols-10 listastrglowna')]")
 	WebElement tableMenu;
 	
@@ -44,6 +46,10 @@ public class MainPage extends BasePage {
 	
 	@FindBy (xpath="//li[@class='level1 nav-10-1 first title']//a[contains(text(),'Kaski Integralne')]")
 	WebElement integralHelmetsMenuItem;
+	
+	@FindBy (xpath="//body[contains(@class,'cms-index-index cms-buyshop-home-advanced')]/div[@id='wrap']/section[@id='content']/div[contains(@class,'std')]/div[contains(@class,'container')]/div[contains(@class,'row isotope-outer isotope')]/div[1]/div[1]")
+	//@FindBy (xpath="//body[contains(@class,'cms-index-index cms-buyshop-home-advanced')]/div[@id='wrap']/section[@id='content']/div[contains(@class,'std')]/div[contains(@class,'container')]/div[contains(@class,'row isotope-outer isotope')]/div[1]")
+	WebElement firstHighlightedProduct;
 	
 	
 	
@@ -97,16 +103,36 @@ public class MainPage extends BasePage {
 	}
 	//tu kolejne metody dla głównego menu
 	
+	public void mouseOverMainMenuBlog() {
+		Actions builder=new Actions(driver);
+		Actions actionMouseOverMainMenuBlog=builder.moveToElement(mainMenuBlog);
+		actionMouseOverMainMenuBlog.perform();
+	}
+	
+	public boolean mainMenuBlogIsDisplayed() {
+		return mainMenuBlog.isDisplayed();
+	}
+	
+	public void mouseOverTableMenu() {
+		Actions builder=new Actions(driver);
+		Actions actionMouseOverTableMenu=builder.moveToElement(tableMenu);
+		actionMouseOverTableMenu.perform();
+	}
 	public boolean tableMenuIsDisplayed() {
 		return tableMenu.isDisplayed();
 	}
-	
+	public void mouseOverHighlightedProducts() {
+		Actions builder=new Actions(driver);
+		Actions actionMouseOverHighlightedProducts=builder.moveToElement(highlightedProducts);
+		actionMouseOverHighlightedProducts.perform();
+	}
 	public boolean highlightedProductsIsDisplayed() {
-		if(highlightedProducts.isDisplayed())
-			System.out.println("No niby jest tam cos takiego!");
 		return highlightedProducts.isDisplayed();
 	}
-	
+	public void clickOnFirstHighlightedProduct() {
+		
+		firstHighlightedProduct.click();
+	}
 	
 	
 	
